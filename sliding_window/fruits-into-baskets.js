@@ -11,7 +11,7 @@ const fruits_into_baskets = (fruits) => {
             initial && baskets.set(initial, (baskets.get(initial)) - 1);
             !baskets.get(initial) && baskets.delete(initial)
         }
-        result = result ? Math.max(fruitsInBaskets, result) : fruitsInBaskets;
+        result = Math.max(fruitsInBaskets, result);
     }
 
     return result;

@@ -11,7 +11,7 @@ const longest_substring_with_k_distinct = (str, k) => {
             initial && counts.set(initial, (counts.get(initial)) - 1);
             !counts.get(initial) && counts.delete(initial)
         }
-        result = result ? Math.max(length, result) : length;
+        result = Math.max(length, result);
     }
 
     return result;
