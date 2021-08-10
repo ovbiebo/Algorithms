@@ -2,7 +2,6 @@ const find_permutation = (str, pattern) => {
     let counts = {}
     let patternCounts = {};
     let total = 0;
-    pattern = [...pattern]
 
     for (const letter of pattern) {
         patternCounts[letter] = (patternCounts[letter] || 0) + 1
