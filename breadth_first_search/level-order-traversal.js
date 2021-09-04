@@ -6,18 +6,49 @@ class TreeNode {
     }
 }
 
+class Queue {
+    constructor() {
+        this.items = {};
+        this.front = 0;
+        this.back = 0;
+    }
+
+    get length() {
+        return this.front - this.back;
+    }
+
+    peek() {
+        return this.items[this.back];
+    }
+
+    enqueue(item) {
+        this.items[this.front] = item;
+        this.front++;
+    }
+
+    dequeue() {
+        const item = this.peek();
+        delete this.items[this.back];
+        this.back++;
+        return item;
+    }
+}
+
 const traverse = (root) => {
     result = [];
-    let queue = [root];
+    if (!root) return result;
+
+    let queue = new Queue();
+    queue.enqueue(root)
 
     while (queue.length > 0) {
         let level = [];
         let levelSize = queue.length;
         for (let i = 0; i < levelSize; i++) {
-            let currNode = queue.shift();
+            let currNode = queue.dequeue();
             level.push(currNode)
-            currNode.left && queue.push(currNode.left);
-            currNode.right && queue.push(currNode.right);
+            currNode.left && queue.enqueue(currNode.left);
+            currNode.right && queue.enqueue(currNode.right);
         }
         result.push(level)
     }
