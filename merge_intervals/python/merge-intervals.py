@@ -12,7 +12,7 @@ def merge(intervals):
     merged = [intervals[0]]
 
     for i in range(1, len(intervals)):
-        if intervals[i - 1].end >= intervals[i].start:
+        if merged[len(merged) - 1].end >= intervals[i].start:
             merged[len(merged) - 1].end = max(intervals[i - 1].end, intervals[i].end)
         else:
             merged.append(intervals[i])
