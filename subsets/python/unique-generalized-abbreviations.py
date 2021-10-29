@@ -1,26 +1,19 @@
 def generate_generalized_abbreviation(word):
-    result = []
-    substrings = [["_" for i in range(len(word))]]
+    result = [[*word]]
 
     for i in range(len(word)):
-        substrings_len = len(substrings)
-        for j in range(substrings_len):
-            substr = substrings[j].copy()
-            substr[i] = word[i]
-            substrings.append(substr)
-
-    for substr in substrings:
-        abbreviation = ""
-        spaces = 0
-        for i in range(len(substr)):
-            if substr[i].isalpha():
-                abbreviation = abbreviation + f"{spaces or ''}" + substr[i]
-                spaces = 0
+        res_len = len(result)
+        for j in range(res_len):
+            new_abbr = result[j].copy()
+            if i > 0 and new_abbr[i - 1].isdigit():
+                new_abbr[i] = f"{int(new_abbr[i - 1]) + 1}"
+                new_abbr[i - 1] = ""
             else:
-                spaces += 1
+                new_abbr[i] = "1"
+            result.append(new_abbr)
 
-        abbreviation = abbreviation + f"{spaces or ''}"
-        result.append(abbreviation)
+    for i in range(len(result)):
+        result[i] = "".join(result[i])
 
     return result
 
