@@ -4,7 +4,7 @@ from heapq import *
 def find_k_smallest_numbers(nums, k):
     result = []
     for num in nums:
-        if len(result) < k - 1 or num < -result[0]:
+        if len(result) < k or num < -result[0]:
             heappush(result, -num)
         if len(result) > k:
             heappop(result)
